@@ -26,8 +26,4 @@ The app will analyze a predefined Python function and print the summary, issues,
 
 This project was created to explore how natural language explanations and basic static code analysis can help beginners understand and improve their code. It simulates a basic version of an AI assistant for code review.
 
-## Future Improvements
 
-- Accept user input from CLI or text file
-- Integrate with large language models (e.g., CodeBERT, GPT) for richer feedback
-- Build a Streamlit version for web-based interaction
