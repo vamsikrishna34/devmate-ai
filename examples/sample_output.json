@@ -1,0 +1,13 @@
+{
+  "summary": "The code calculates the final price after applying a discount. It prompts the user for input values and prints the discounted result.",
+  "issues": [
+    "Missing input validation — inputs are not converted to numeric types.",
+    "No error handling for invalid or empty inputs.",
+    "Hardcoded string output instead of formatting."
+  ],
+  "suggestions": [
+    "Use `float()` to convert inputs to numeric types safely.",
+    "Add `try-except` blocks to handle `ValueError` from bad input.",
+    "Consider using `f-strings` for cleaner output formatting."
+  ]
+}
