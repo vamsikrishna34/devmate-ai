@@ -1,29 +1,35 @@
-# DevMate AI – Code Reviewer and Explainer
+#  Devmate AI
 
-DevMate AI is a beginner-friendly static code analysis tool that takes in a Python function, summarizes its purpose, identifies common issues, and suggests basic improvements. It simulates the kind of lightweight review assistance an AI-based learning tool could provide for new developers.
+An intelligent GenAI code reviewer powered by Hugging Face and FastAPI.  
+Devmate AI offers smart suggestions, semantic analysis, and an elegant frontend — built for engineers, collaborators, and recruiters alike.
 
-## Features
+---
 
-- Accepts Python code as input
-- Provides a high-level summary of what the function does
-- Flags possible coding issues (e.g., missing checks, inefficiencies)
-- Suggests improvements based on pattern recognition and code structure
+##  Features
 
-## Technologies Used
+-  **Code Reviews with Codet5**: Receive contextual feedback, detect issues, and get improvement tips
+-  **Semantic Diff**: Compare logic and meaning between code versions using sentence-transformers
+-  **FastAPI Backend**: Clean modular architecture with Docker-ready deployment
+-  **Frontend via GitHub Pages**: Seamless client-side UI to submit code and view results
+-  **Modular Design**: Scalable architecture for multi-agent workflows and GenAI extensions
 
-- Python
-- Abstract Syntax Tree (`ast` module)
+---
 
-## How to Run
+## 📍 Demo Links
+
+| Service         | Link |
+|----------------|------|
+| 🔗 Frontend     | [https://yourusername.github.io/devmate-ai](https://yourusername.github.io/devmate-ai) |
+| 🔗 Backend API  | [https://devmate-backend.onrender.com/review](https://devmate-backend.onrender.com/review) |
+
+> Update these URLs with your actual GitHub username and Render deployment link once deployed.
+
+---
+
+## 📦 Installation (Local)
 
 ```bash
-python main.py
-```
-
-The app will analyze a predefined Python function and print the summary, issues, and suggestions.
-
-## Why This Project
-
-This project was created to explore how natural language explanations and basic static code analysis can help beginners understand and improve their code. It simulates a basic version of an AI assistant for code review.
-
-
+git clone https://github.com/yourusername/devmate-ai.git
+cd devmate-ai
+pip install -r requirements.txt
+uvicorn main:app --reload
