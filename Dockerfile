@@ -9,14 +9,14 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy backend code
-COPY backend/ backend/
+COPY backend/ ./backend/
 RUN touch backend/__init__.py
 
-# Copy main.py from backend folder (since it’s located there)
-COPY backend/main.py .
+# Set PYTHONPATH so app finds backend modules
+ENV PYTHONPATH=/app
+
+# Start FastAPI from backend.main
+CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "80"]
 
 # Expose port used by FastAPI
 EXPOSE 80
-
-# Start FastAPI app using Uvicorn
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
