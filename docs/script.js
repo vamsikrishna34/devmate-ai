@@ -10,11 +10,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const code = codeInput.value;
 
     try {
-      const response = await fetch("https://devmate-ai.onrender.com", {
+      const response = await fetch("https://devmate-ai.onrender.com/review", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code: code })
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ code })
       });
+
+      if (!response.ok) {
+        throw new Error(`Server responded with ${response.status}`);
+      }
 
       const feedback = await response.json();
 
