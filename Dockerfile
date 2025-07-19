@@ -8,15 +8,17 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy backend code
+# Copy entire backend folder
 COPY backend/ ./backend/
+
+# Ensure backend is treated as a Python module
 RUN touch backend/__init__.py
 
-# Set PYTHONPATH so app finds backend modules
+# Set PYTHONPATH so Python finds your backend modules
 ENV PYTHONPATH=/app
 
-# Start FastAPI from backend.main
+# Start FastAPI app via backend.main
 CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "80"]
 
-# Expose port used by FastAPI
+# Open port 80 for traffic
 EXPOSE 80
