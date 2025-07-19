@@ -20,7 +20,7 @@ Devmate AI offers smart suggestions, semantic analysis, and an elegant frontend 
 | Service         | Link |
 |----------------|------|
 | 🔗 Frontend     | [https://vamsikrishna34.github.io/devmate-ai/] |
-| 🔗 Backend API  | [https://devmate-backend.onrender.com/review]|
+| 🔗 Backend API  | [https://devmate-ai.onrender.com/]|
 
 
 
