@@ -8,12 +8,12 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy backend code and main entry file
+# Copy backend code
 COPY backend/ backend/
-COPY main.py .
-
-# Ensure backend is recognized as a Python module
 RUN touch backend/__init__.py
+
+# Copy main.py from backend folder (since it’s located there)
+COPY backend/main.py .
 
 # Expose port used by FastAPI
 EXPOSE 80
