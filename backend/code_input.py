@@ -14,3 +14,10 @@ def calculate_total(price, tax_rate):
     #         return f.read()
     # except FileNotFoundError:
     #     return "print('File not found')"
+
+def load_code_from_file(path: str) -> str:
+    try:
+        with open(path, "r") as f:
+            return f.read()
+    except FileNotFoundError:
+        return "print('File not found')"
