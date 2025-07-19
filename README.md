@@ -29,7 +29,7 @@ Devmate AI offers smart suggestions, semantic analysis, and an elegant frontend 
 ## 📦 Installation (Local)
 
 ```bash
-git clone https://github.com/yourusername/devmate-ai.git
+git clone https://github.com/vamsikrishna34/devmate-ai.git
 cd devmate-ai
 pip install -r requirements.txt
 uvicorn main:app --reload
