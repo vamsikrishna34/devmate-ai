@@ -1,0 +1,6 @@
+model_name: "Salesforce/codet5-base"
+enable_semantic_diff: true
+max_length: 512
+
+frontend_origin: "*"
+default_prompt: "Review the following code and suggest improvements."
