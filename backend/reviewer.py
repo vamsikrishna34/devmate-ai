@@ -6,18 +6,9 @@ from transformers import pipeline
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Load CodeT5 model from Hugging Face
-review_model = pipeline("text2text-generation", model="Salesforce/codet5-base")
-
 def parse_feedback(generated: str) -> dict:
-    """Extracts summary, issues, and suggestions from model output."""
-    # Normalize newlines
     lines = generated.strip().split("\n")
-
-    # Containers
-    summary_lines = []
-    issue_lines = []
-    suggestion_lines = []
+    summary_lines, issue_lines, suggestion_lines = [], [], []
 
     for line in lines:
         line_lower = line.lower()
@@ -28,20 +19,19 @@ def parse_feedback(generated: str) -> dict:
         elif "suggest" in line_lower:
             suggestion_lines.append(re.sub(r"(?i)^suggest(ion)?:?", "", line).strip())
 
-    feedback = {
+    return {
         "summary": " ".join(summary_lines) or "No summary extracted.",
         "issues": issue_lines or ["No issues detected."],
         "suggestions": suggestion_lines or ["No suggestions provided."]
     }
 
-    return feedback
-
 def analyze_code(code: str) -> dict:
-    """Uses CodeT5 to generate review and parses the output."""
     logger.info("Received code for review.")
     prompt = f"Review this Python code:\n{code}\nProvide a summary, identify issues, and suggest improvements."
 
     try:
+        # Lazy-load the smaller model
+        review_model = pipeline("text2text-generation", model="Salesforce/codet5-small")
         result = review_model(prompt, max_length=512, do_sample=False)
         generated_text = result[0].get("generated_text", "").strip()
 
