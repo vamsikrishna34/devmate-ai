@@ -1,13 +1,26 @@
 import argparse
 import json
+from fastapi import FastAPI
 from backend.code_input import sample_code, load_code_from_file
 from backend.reviewer import analyze_code
 
+#  FastAPI app for Render deployment
+app = FastAPI()
+
+@app.get("/")
+def root():
+    return {"message": "Devmate AI backend is running."}
+
+@app.post("/review")
+def review(code: str):
+    return analyze_code(code)
+
+# 🧪 CLI logic (safe to run locally or in dev tools)
 def display_feedback(feedback: dict) -> None:
-    print("\ Summary:\n")
+    print("\nSummary:\n")
     print(feedback.get('summary', 'No summary available.'))
 
-    print("\n Issues:\n")
+    print("\nIssues:\n")
     issues = feedback.get('issues', [])
     if issues:
         for issue in issues:
@@ -15,7 +28,7 @@ def display_feedback(feedback: dict) -> None:
     else:
         print("No major issues found.")
 
-    print("\n Suggestions:\n")
+    print("\nSuggestions:\n")
     suggestions = feedback.get('suggestions', [])
     if suggestions:
         for suggestion in suggestions:
@@ -30,18 +43,14 @@ def main():
     args = parser.parse_args()
 
     # Load code sample
-    if args.file:
-        code = load_code_from_file(args.file)
-    else:
-        code = sample_code()
-
+    code = load_code_from_file(args.file) if args.file else sample_code()
     feedback = analyze_code(code)
     display_feedback(feedback)
 
     if args.save:
         with open("review_output.json", "w") as f:
             json.dump(feedback, f, indent=2)
-        print("\n Feedback saved to review_output.json")
+        print("\nFeedback saved to review_output.json")
 
 if __name__ == "__main__":
     main()
